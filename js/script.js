@@ -1,11 +1,10 @@
 process.stdin.setEncoding('utf-8');
 process.stdin.on('readable', function() {
-    // tutaj treść tego co ma się wykonać w momencie odczytania wejścia.
-    // metoda .read() ma za zadanie odczytać co użytkownik podał na wejściu
-    var input = process.stdin.read();
-    //process.stdout.write(input);
-    var instruction = input.toString().trim();
-        switch (instruction) {
+    var input = process.stdin.read().trim();
+    console.log(typeof(input));
+    console.log('value of input => ',input);
+    if(input !== '') {
+        switch (input) {
             case '/exit':
                 process.stdout.write('Quitting app!\n'); 
                 process.exit();
@@ -20,4 +19,7 @@ process.stdin.on('readable', function() {
                 process.stderr.write('Wrong instruction! \n');
                 break;    
         }
+    } else {
+        process.stdout.write('You didn'+"'"+'t write anything! Quitting app...\n');
+    }
 });
